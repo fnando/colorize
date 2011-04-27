@@ -28,7 +28,7 @@ namespace :gem do
     
     spec.instance_variables.each do |ivar|
       value = spec.instance_variable_get(ivar)
-      name  = ivar.split("@").last
+      name  = ivar.to_s.split("@").last
       next if name == "date"
       
       next if skip_fields.include?(name) || value.nil? || value == "" || (value.respond_to?(:empty?) && value.empty?)
