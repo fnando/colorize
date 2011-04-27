@@ -13,6 +13,14 @@ module Colorize
     :yellow  => "33"
   }
 
+  Colorize::COLORS.keys.each do |name|
+    String.class_eval <<-RUBY, __FILE__, __LINE__
+      def to_#{name}(options = {})                                # def to_white(options = {})
+        Colorize.apply(self, options.merge(:color => :#{name}))   #   Colorize.apply(self, options.merge(:color => :white))
+      end                                                         # end
+    RUBY
+  end
+
   BGCOLORS = {
     :black   => "40",
     :blue    => "44",
@@ -31,11 +39,11 @@ module Colorize
     :underscore => "4"
   }
 
-  def puts(string, options={})
+  def puts(string, options = {})
     Kernel.puts apply(string, options)
   end
 
-  def apply(string, options={})
+  def apply(string, options = {})
     options = {
       :style => []
     }.merge(options)
@@ -66,6 +74,11 @@ module Colorize
     end
   end
 
+  # Allow to colorize strings using color names.
+  #
+  #   Colorize.red "Error!"
+  #   Colorize.red "Error!", :style => :blink
+  #
   def method_missing(color_name, *args)
     if COLORS.keys.include?(color_name.to_sym)
       string = args.shift

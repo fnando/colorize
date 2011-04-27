@@ -9,17 +9,20 @@ Install:
 
 Usage:
 
-    require "colorize"
+	require "colorize"
 
-    puts Colorize.apply "test", :color => :red
-    puts Colorize.apply "test", :color => :red, :bgcolor => :blue
-    puts Colorize.apply "test", :style => %w(highlight blink underscore)
+	puts Colorize.apply "test", :color => :red
+	puts Colorize.apply "test", :color => :red, :bgcolor => :blue
+	puts Colorize.apply "test", :style => %w(highlight blink underscore)
 
-    Colorize.puts "test", :style => %w(highlight blink underscore)
+	Colorize.puts "test", :style => %w(highlight blink underscore)
+
+	puts "Error!".to_red
+	puts "Error!".to_red(:style => :blink)
 
 Disable Colorize by adding the following to your `~/.bash_profile`:
 
-    export COLORIZE=0
+	export COLORIZE=0
 
 MAINTAINER
 ----------
