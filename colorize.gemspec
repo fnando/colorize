@@ -1,20 +1,19 @@
-# WARNING : RAKE AUTO-GENERATED FILE. DO NOT MANUALLY EDIT!
-# RUN : 'rake gem:update_gemspec'
+# -*- encoding: utf-8 -*-
+$:.push File.expand_path("../lib", __FILE__)
+require "colorize/version"
 
 Gem::Specification.new do |s|
-  s.required_rubygems_version = ">= 0"
-  s.has_rdoc = true
-  s.email = ["fnando.vieira@gmail.com"]
-  s.name = "colorize"
-  s.homepage = "http://github.com/fnando/colorize"
-  s.bindir = "bin"
-  s.summary = "Colorize add color to $stdout output"
-  s.add_dependency "main", ">= 0"
-  s.version = "0.0.1"
+  s.name        = "colorize"
+  s.version     = Colorize::Version::STRING
+  s.platform    = Gem::Platform::RUBY
+  s.authors     = ["Nando Vieira"]
+  s.email       = ["fnando.vieira@gmail.com"]
+  s.homepage    = "http://rubygems.org/gems/colorize"
+  s.summary     = "Make your $stdout colorful"
+  s.description = s.summary
+
+  s.files         = `git ls-files`.split("\n")
+  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
-  s.files = ["Rakefile",
- "colorize.gemspec",
- "README.markdown",
- "lib/colorize.rb"]
-  s.authors = ["Nando Vieira"]
 end
