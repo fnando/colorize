@@ -3,25 +3,18 @@ Colorize
 
 Colorize add color to $stdout output.
 
-Install Renv:
+Install:
 
-    sudo gem install fnando-colorize --source=http://gems.github.com
-
-Or
-
-    git clone git://github.com/fnando/colorize.git
-    cd colorize
-    rake gem:install
+	gem install colorize
 
 Usage:
 
-    require "rubygems"
     require "colorize"
-    
+
     puts Colorize.apply "test", :color => :red
     puts Colorize.apply "test", :color => :red, :bgcolor => :blue
     puts Colorize.apply "test", :style => %w(highlight blink underscore)
-    
+
     Colorize.puts "test", :style => %w(highlight blink underscore)
 
 Disable Colorize by adding the following to your `~/.bash_profile`:

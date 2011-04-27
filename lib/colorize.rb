@@ -26,8 +26,8 @@ module Colorize
   }
 
   STYLES = {
-    :highlight => "1",
-    :blink => "5",
+    :highlight  => "1",
+    :blink      => "5",
     :underscore => "4"
   }
 
@@ -74,5 +74,10 @@ module Colorize
     else
       super
     end
+  end
+
+  def respond_to?(method, include_private = false)
+    return true if COLORS.keys.include?(color_name.to_sym)
+    super
   end
 end
