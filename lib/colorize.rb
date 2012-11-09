@@ -44,32 +44,32 @@ module Colorize
   end
 
   def apply(string, options = {})
-    options = {
-      :style => []
-    }.merge(options)
-
-    options[:style] = [options[:style]].flatten
-
-    colors = []
-
-    options[:color] = options[:color].to_sym if options[:color]
-    options[:bgcolor] = options[:bgcolor].to_sym if options[:bgcolor]
-
-    colors << COLORS[options[:color]] if options[:color]
-    colors << BGCOLORS[options[:bgcolor]] if options[:bgcolor]
-
-    options[:style] << :highlight if [options[:color], options[:bgcolor]].include?(:white)
-
-    options[:style].each do |option|
-      colors << STYLES[option.to_sym]
-    end
-
-    colors.uniq!
-    colors.compact!
-
     if ENV["COLORIZE"] == "0"
       string
     else
+      options = {
+        :style => []
+      }.merge(options)
+
+      options[:style] = [options[:style]].flatten
+
+      colors = []
+
+      options[:color] = options[:color].to_sym if options[:color]
+      options[:bgcolor] = options[:bgcolor].to_sym if options[:bgcolor]
+
+      colors << COLORS[options[:color]] if options[:color]
+      colors << BGCOLORS[options[:bgcolor]] if options[:bgcolor]
+
+      options[:style] << :highlight if [options[:color], options[:bgcolor]].include?(:white)
+
+      options[:style].each do |option|
+        colors << STYLES[option.to_sym]
+      end
+
+      colors.uniq!
+      colors.compact!
+
       %(\e[#{colors.join(";")}m#{string}\e[0m)
     end
   end
